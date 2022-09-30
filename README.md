@@ -7,4 +7,55 @@ Your service should parse the following data from the input:
 2. Emoticons - For this exercise, you only need to consider 'custom' emoticons which are alphanumeric strings, no longer than 15 characters, contained in parenthesis. You can assume that anything matching this format is an emoticon. (https://confluence.atlassian.com/hipchatdc3/fun-with-emoticons-966656104.html)
 3. Links - Any URLs contained in the message, along with the page's title.
 
+### Install server:
+```
+npm install
+```
+
+### Run server:
+```
+node index
+```
+
+## Sample input:
+```
+{
+  records(
+    message: "@bob @john (success) Olympics are starting soon; http://www.nbcolympics.com"
+  ) {
+    mentions
+    emoticons
+    links {
+      title,
+      url
+    }
+  }
+}
+
+```
+
+## Sample output:
+```
+{
+  "data": {
+    "records": {
+      "mentions": [
+        "bob",
+        "john"
+      ],
+      "emoticons": [
+        "success"
+      ],
+      "links": [
+        {
+          "title": "Paris 2024 Olympic Games | NBC Olympics",
+          "url": "http://www.nbcolympics.com"
+        }
+      ]
+    }
+  }
+}
+```
+
+## Example: 
 ![image](https://user-images.githubusercontent.com/103871220/193339092-8ef44541-0191-4c3c-98e6-70563ca04bfa.png)
